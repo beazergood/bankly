@@ -5,6 +5,7 @@ import { Transaction as TransactionType } from "../../../types";
 import { transactions } from "../../api/data/transactions";
 import "./index.css";
 import { Transaction } from "./item";
+import { Loading } from '../loading';
 
 const isExpense = (transaction: TransactionType) =>
   transaction.amount.value < 0;
@@ -13,11 +14,14 @@ const isIncome = (transaction: TransactionType) => transaction.amount.value > 0;
 const Expenses = () => {
 
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchTransactions() {
+      setIsLoading(true);
       const response = await fetch("http://localhost:5173/api/transactions");
       const transactions = await response.json();
+      setIsLoading(false);
       setTransactions(transactions);
     }
 
@@ -34,6 +38,13 @@ const Expenses = () => {
         </tr>
       </thead>
       <tbody>
+        {isLoading && (
+          <tr>
+            <th colSpan={3}>
+              <Loading />
+            </th>
+          </tr>
+        )}
         {transactions.filter(isExpense).map((transaction) => (
           <Transaction transaction={transaction} key={transaction.id} />
         ))}
