@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import * as Tabs from "@radix-ui/react-tabs";
+
 import { Transaction as TransactionType } from "../../../types";
 import { transactions } from "../../api/data/transactions";
 import "./index.css";
@@ -9,6 +11,19 @@ const isExpense = (transaction: TransactionType) =>
 const isIncome = (transaction: TransactionType) => transaction.amount.value > 0;
 
 const Expenses = () => {
+
+  const [transactions, setTransactions] = useState<TransactionType[]>([]);
+
+  useEffect(() => {
+    async function fetchTransactions() {
+      const response = await fetch("http://localhost:5173/api/transactions");
+      const transactions = await response.json();
+      setTransactions(transactions);
+    }
+
+    fetchTransactions();
+  }, []);
+
   return (
     <table aria-label="Expenses">
       <thead>
