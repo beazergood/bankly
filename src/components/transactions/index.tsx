@@ -15,14 +15,21 @@ const Expenses = () => {
 
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchTransactions() {
       setIsLoading(true);
-      const response = await fetch("http://localhost:5173/api/transactions");
-      const transactions = await response.json();
-      setIsLoading(false);
-      setTransactions(transactions);
+      fetch("http://localhost:5173/api/transactions")
+        .then((res) => {
+          if (res.status === 500) throw new Error()
+          return res.json()
+        })
+        .then((data) => setTransactions(data))
+        .catch(() => setError('Error fetching data'))
+        .finally(() => setIsLoading(false));
+
+
     }
 
     fetchTransactions();
@@ -38,16 +45,27 @@ const Expenses = () => {
         </tr>
       </thead>
       <tbody>
-        {isLoading && (
-          <tr>
-            <th colSpan={3}>
-              <Loading />
-            </th>
-          </tr>
-        )}
-        {transactions.filter(isExpense).map((transaction) => (
-          <Transaction transaction={transaction} key={transaction.id} />
-        ))}
+        <>
+          {isLoading && (
+            <tr>
+              <td colSpan={3}>
+                <Loading />
+              </td>
+            </tr>
+          )}
+          {error && (
+            <tr>
+              <td colSpan={3} >
+                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'red' }}>
+                  {error}
+                </span>
+              </td>
+            </tr>
+          )}
+          {transactions.filter(isExpense).map((transaction) => (
+            <Transaction transaction={transaction} key={transaction.id} />
+          ))}
+        </>
       </tbody>
     </table>
   );
