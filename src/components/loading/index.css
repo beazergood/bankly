@@ -1,0 +1,22 @@
+.loadingContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes loading-spin {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .loading {
+        animation: loading-spin infinite 1.5s linear;
+    }
+}

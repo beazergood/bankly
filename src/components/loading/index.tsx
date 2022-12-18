@@ -1,1 +1,4 @@
-export const Loading = () => <div style={{height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Loading...</div>;
+import "./index.css";
+
+export const Loading = () => <div className="loadingContainer"><img src="./public/bud.svg" width="30px" className="loading" /></div>;
+
