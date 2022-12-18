@@ -17,10 +17,23 @@ export const Transaction = ({ transaction }: Props) => (
       </div>
     </td>
     <td>
-      <div>{transaction.date}</div>
+      <div>
+        {new Intl.DateTimeFormat("en-GB", {
+          year: "numeric",
+          month: "long",
+          day: "2-digit"
+        }).format(new Date(transaction.date))}
+      </div>
     </td>
     <td className="transaction-amount">
-      <div className="amount">{transaction.amount.value}</div>
+      <div className="amount">
+        {new Intl.NumberFormat("en-GB", {
+          style: "currency",
+          currency: "GBP",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(transaction.amount.value)}
+      </div>
     </td>
   </tr>
 );

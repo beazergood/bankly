@@ -9,7 +9,14 @@ export const AccountItem = ({ account }: Props) => {
   return (
     <div className="account">
       <div className="total">Total {account.balance.amount.currency}</div>
-      <strong>{account.balance.amount.value}</strong>
+      <strong>
+      {new Intl.NumberFormat("en-GB", {
+          style: "currency",
+          currency: account.balance.amount.currency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(account.balance.amount.value)}
+        </strong>
     </div>
   );
 };
