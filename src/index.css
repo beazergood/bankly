@@ -1,4 +1,5 @@
 :root {
+  --background-1000: #14141A;
   --background-900: #0e0e11;
   --background-800: #1e1e27;
   --primary-900: #ffffff;
@@ -49,8 +50,9 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
 }
 
 button {
