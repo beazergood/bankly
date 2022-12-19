@@ -12,7 +12,7 @@ export const Transaction = ({ transaction }: Props) => (
         <Avatar name={transaction.description} />
         <div className="transaction-description">
           {transaction.description}
-          <div className="transaction-category">{transaction.category}</div>
+          <div className="transaction-category">{transaction.category.replace(/_/g, ' ')}</div>
         </div>
       </div>
     </td>
