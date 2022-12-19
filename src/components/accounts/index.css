@@ -2,14 +2,32 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
   gap: var(--spacer-medium);
+  margin-bottom: 48px;
 }
 
 .account {
   background: var(--background-1000);
   padding: var(--spacer-large);
   text-align: left;
+  max-height: 114px;
+  max-width: 252px;
+  border-radius: 4px;
+}
+
+.account strong {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .total {
   color: var(--primary-300);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 8px;
 }
