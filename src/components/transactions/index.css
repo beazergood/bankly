@@ -35,7 +35,7 @@ td {
 }
 
 th {
-  color: var(--primary-900);
+  color: var(--primary-300);
   border-bottom: 1px solid var(--primary-300);
   padding: var(--spacer-medium);
   text-align: left;
