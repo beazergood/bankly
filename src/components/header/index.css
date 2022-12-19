@@ -1,5 +1,12 @@
 .header {
     height: 71px;
-    width: 1512px;
+    width: 100%;
     border-bottom: 1px solid var(--background-800);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header > div {
+    display: flex;
 }
