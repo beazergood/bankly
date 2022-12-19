@@ -1,8 +1,8 @@
 # Fix the test
 
-Inside [the tractions test suite](/src/components/transactions/index.test.tsx) there's a skipped test because the author couldn't get it to pass, can you fix it for them please?
+Inside [the transactions test suite](/src/components/transactions/index.test.tsx) there's a skipped test because the author couldn't get it to pass, can you fix it for them please?
 
-[React Testing Library documentation.](https://testing-library.com/docs/dom-testing-library/)
+[React Testing Library documentation.](https://testing-library.com/docs/dom-testing-library/intro)
 
 ---
 
