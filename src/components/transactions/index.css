@@ -47,7 +47,7 @@ td:nth-last-child(1) {
 th {
   color: var(--primary-300);
   border-bottom: 1px solid var(--primary-100);
-  padding: var(--spacer-medium);
+  padding: var(--spacer-small);
   text-align: left;
   font-weight: 400;
 }
