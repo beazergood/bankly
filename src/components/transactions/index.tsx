@@ -15,7 +15,7 @@ const Expenses = () => {
 
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [errorText, setErrorText] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchTransactions() {
@@ -26,14 +26,18 @@ const Expenses = () => {
           return res.json()
         })
         .then((data) => setTransactions(data))
-        .catch(() => setError('Error fetching data'))
+        .catch(() => setErrorText('Error fetching data'))
         .finally(() => setIsLoading(false));
-
-
     }
 
     fetchTransactions();
   }, []);
+
+  const error = (
+    <span data-testid="error-message" className="errorMsg">
+      {errorText}
+    </span>
+  );
 
   return (
     <table aria-label="Expenses">
@@ -53,12 +57,10 @@ const Expenses = () => {
               </td>
             </tr>
           )}
-          {error && (
+          {errorText && (
             <tr>
-              <td colSpan={3} >
-                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'red' }}>
-                  {error}
-                </span>
+              <td colSpan={3}>
+                {error}
               </td>
             </tr>
           )}

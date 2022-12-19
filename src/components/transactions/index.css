@@ -46,3 +46,10 @@ th {
   grid-template-columns: min-content 1fr;
   gap: var(--spacer-medium);
 }
+
+.errorMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+}
