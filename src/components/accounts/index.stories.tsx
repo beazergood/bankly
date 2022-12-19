@@ -9,7 +9,9 @@ export default {
 } as ComponentMeta<typeof Accounts>;
 
 const Template: ComponentStory<typeof Accounts> = (args) => (
-    <Accounts {...args} />
+    <div className="container">
+        <Accounts {...args} />
+    </div>
 );
 
 export const DataRow = Template.bind({});

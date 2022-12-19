@@ -8,7 +8,9 @@ export default {
 } as ComponentMeta<typeof AccountItem>;
 
 const Template: Story = (args) => (
-    <AccountItem {...args} />
+    <div className="container">
+        <AccountItem {...args} />
+    </div>
 );
 
 export const GBP = Template.bind({});

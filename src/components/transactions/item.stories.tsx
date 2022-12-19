@@ -8,7 +8,9 @@ export default {
 } as ComponentMeta<typeof Transaction>;
 
 const Template: Story = (args) => (
-    <Transaction {...args} />
+    <div className="container">
+        <Transaction {...args} />
+    </div>
 );
 
 export const ExpOne = Template.bind({});

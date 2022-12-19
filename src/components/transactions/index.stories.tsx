@@ -9,7 +9,9 @@ export default {
 } as ComponentMeta<typeof TransactionHistory>;
 
 const Template: ComponentStory<typeof TransactionHistory> = (args) => (
-    <TransactionHistory {...args} />
+    <div className="container">
+        <TransactionHistory {...args} />
+    </div>
 );
 
 export const Primary = Template.bind({});
