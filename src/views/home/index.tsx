@@ -1,9 +1,9 @@
-import { Accounts } from "../../components/accounts";
-import { TransactionHistory } from "../../components/transactions";
+import { AccountsContainer } from "../../components/accounts/accounts.viewModel";
+import { TransactionsContainer } from "../../components/transactions/transactions.viewModel";
 
 export const Home = () => (
   <>
-    <Accounts />
-    <TransactionHistory />
+    <AccountsContainer />
+    <TransactionsContainer />
   </>
 );
