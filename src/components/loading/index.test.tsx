@@ -8,6 +8,7 @@ test("should render as expected", () => {
 <DocumentFragment>
   <div
     class="loadingContainer"
+    data-testid="loading-element"
   >
     <img
       class="loading"
