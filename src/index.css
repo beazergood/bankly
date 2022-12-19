@@ -4,6 +4,7 @@
   --background-800: #1e1e27;
   --primary-900: #ffffff;
   --primary-300: #88869f;
+  --primary-100: #323241;
   --link: #646cff;
 
   --spacer-small: 0.5rem;
@@ -25,15 +26,17 @@
   color: var(--primary-900);
   background-color: var(--background-900);
   font-synthesis: none;
-  width: 90vw;
-  max-width: 800px;
   margin: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+}
+
+.container {
+  width: 90vw;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 i a {
@@ -41,6 +44,7 @@ i a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: var(--link);
 }
@@ -53,6 +57,7 @@ h1 {
   font-size: 24px;
   font-weight: 500;
   line-height: 30px;
+  margin: 48px 0 24px 0;
 }
 
 button {
@@ -67,13 +72,16 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: var(--link);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
 button[data-state="active"] {
   --background-900: #d9d9d9;
   --primary-300: #000000;
