@@ -13,6 +13,7 @@ export const AccountItem = ({ account }: Props) => {
       {new Intl.NumberFormat("en-GB", {
           style: "currency",
           currency: account.balance.amount.currency,
+          currencyDisplay: 'narrowSymbol',
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }).format(account.balance.amount.value)}
