@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
 import * as Tabs from "@radix-ui/react-tabs";
 
 import { Transaction as TransactionType } from "../../../types";
-import { transactions } from "../../api/data/transactions";
 import "./index.css";
 import { Transaction } from "./item";
 import { Loading } from '../loading';
@@ -11,27 +9,17 @@ const isExpense = (transaction: TransactionType) =>
   transaction.amount.value < 0;
 const isIncome = (transaction: TransactionType) => transaction.amount.value > 0;
 
-const Expenses = () => {
+type ExpensesProps = {
+  transactions: TransactionType[];
+  errorText?: string;
+  isLoading: boolean;
+}
 
-  const [transactions, setTransactions] = useState<TransactionType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorText, setErrorText] = useState<string | null>(null);
+type IncomeProps = {
+  transactions: TransactionType[];
+}
 
-  useEffect(() => {
-    async function fetchTransactions() {
-      setIsLoading(true);
-      fetch("http://localhost:5173/api/transactions")
-        .then((res) => {
-          if (res.status === 500) throw new Error()
-          return res.json()
-        })
-        .then((data) => setTransactions(data))
-        .catch(() => setErrorText('Error fetching data'))
-        .finally(() => setIsLoading(false));
-    }
-
-    fetchTransactions();
-  }, []);
+const Expenses = ({ transactions, errorText, isLoading }: ExpensesProps) => {
 
   const error = (
     <span data-testid="error-message" className="errorMsg">
@@ -73,7 +61,7 @@ const Expenses = () => {
   );
 };
 
-const Income = () => {
+const Income = ({ transactions }: IncomeProps) => {
   return (
     <table aria-label="Income">
       <thead>
@@ -92,10 +80,10 @@ const Income = () => {
   );
 };
 
-export const TransactionHistory = () => {
+export const TransactionHistory = ({ transactions, errorText, isLoading }: ExpensesProps) => {
   return (
     <>
-      <h1 className="align-left">Transaction History</h1>
+      <h1 className="align-left">Transaction history</h1>
       <Tabs.Root defaultValue="expenses" className="flow">
         <Tabs.List className="tabs__list" aria-label="Filter your transactions">
           <Tabs.Trigger value="expenses">Expenses</Tabs.Trigger>
@@ -103,10 +91,10 @@ export const TransactionHistory = () => {
         </Tabs.List>
 
         <Tabs.Content className="TabsContent" value="expenses">
-          <Expenses />
+          <Expenses transactions={transactions} errorText={errorText} isLoading={isLoading} />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="income">
-          <Income />
+          <Income transactions={transactions} />
         </Tabs.Content>
       </Tabs.Root>
     </>
