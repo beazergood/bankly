@@ -8,13 +8,17 @@
   gap: var(--spacer-medium);
 }
 
+.tabs__list button {
+  border: 1px solid #282834;
+}
+
 .avatar {
   user-select: none;
   width: var(--spacer-xxlarge);
   height: var(--spacer-xxlarge);
-  font-size: var(--font-xlarge);
+  font-size: var(--font-large);
   font-weight: 600;
-  border-radius: var(--spacer-smallall);
+  border-radius: var(--spacer-small);
   border: 2px solid var(--primary-300);
   background-color: var(--background-900);
   text-transform: uppercase;
@@ -25,26 +29,43 @@
 
 table {
   background-color: var(--background-800);
-  border-radius: var(--spacer-smallall);
+  border-radius: var(--spacer-small);
   width: 100%;
   text-align: left;
+  margin-bottom: var(--spacer-large);
 }
 
 td {
+  padding: var(--spacer-small);
+}
+
+td:nth-last-child(1) {
   padding: var(--spacer-medium);
+  text-align: right;
 }
 
 th {
   color: var(--primary-300);
-  border-bottom: 1px solid var(--primary-300);
+  border-bottom: 1px solid var(--primary-100);
   padding: var(--spacer-medium);
   text-align: left;
+  font-weight: 400;
+}
+
+th:nth-last-child(1){
+  text-align: right;
 }
 
 .transaction-detail {
   display: grid;
   grid-template-columns: min-content 1fr;
   gap: var(--spacer-medium);
+}
+
+.transaction-category {
+  color: var(--primary-300);
+  text-transform: capitalize;
+  font-size: 14px;
 }
 
 .errorMsg {
