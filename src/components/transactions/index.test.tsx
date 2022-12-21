@@ -2,13 +2,13 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { server } from '../../../jest.setup'
 
-import { TransactionHistory } from ".";
+import { TransactionsContainer } from "./transactions.viewModel";
 
 describe("transaction history", () => {
   test("the expenses tab should be shown by default", async () => {
-    render(<TransactionHistory />);
+    render(<TransactionsContainer />);
 
-    expect(screen.getByText("Transaction History")).toBeInTheDocument();
+    expect(screen.getByText("Transaction history")).toBeInTheDocument();
 
     const expensesTabTrigger = screen.getByRole("tab", {
       name: "Expenses",
@@ -31,7 +31,7 @@ describe("transaction history", () => {
   });
 
   test("changing between the expenses and income tabs should show different transactions", async () => {
-    render(<TransactionHistory />);
+    render(<TransactionsContainer />);
 
     const expensesTabTrigger = screen.getByRole("tab", {
       name: "Expenses",
@@ -64,9 +64,9 @@ describe("transaction history", () => {
 
 describe("loading & error states", () => {
   test("should show a loading indicator when transactions are loading...", () => {
-    render(<TransactionHistory />);
+    render(<TransactionsContainer />);
 
-    expect(screen.getByText("Transaction History")).toBeInTheDocument();
+    expect(screen.getByText("Transaction history")).toBeInTheDocument();
 
     const expensesTabTrigger = screen.getByRole("tab", {
       name: "Expenses",
@@ -90,9 +90,9 @@ describe("loading & error states", () => {
       })
     );
 
-    render(<TransactionHistory />);
+    render(<TransactionsContainer />);
 
-    expect(screen.getByText("Transaction History")).toBeInTheDocument();
+    expect(screen.getByText("Transaction history")).toBeInTheDocument();
 
     const expensesTabTrigger = screen.getByRole("tab", {
       name: "Expenses",
