@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 import { rest } from "msw";
 import { server } from '../../../jest.setup'
 
@@ -22,12 +23,10 @@ describe("transaction history", () => {
 
     expect(expensesTable).toBeInTheDocument();
 
-    // waitFor errors, but setTimeout doesn't 🤔
-    // await waitFor(() =>
-    setTimeout(() => {
+
+    await waitFor(() =>
       expect(screen.getByText("-£20.25")).toBeInTheDocument()
-    }, 2000)
-    // );
+    );
   });
 
   test("changing between the expenses and income tabs should show different transactions", async () => {
@@ -46,18 +45,17 @@ describe("transaction history", () => {
       name: "Income",
     });
 
-    expect(expensesTable).toBeInTheDocument();
-    expect(incomeTable).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(expensesTable).toBeInTheDocument();
+      expect(incomeTable).not.toBeInTheDocument();
+      expect(screen.getByText("-£20.25")).toBeInTheDocument();
+    });
 
-    // setTimeout feels wrong but works(?) 🤷🏻‍♂️
-    setTimeout(() => {
-      expect(screen.getByText("-£20.25")).toBeInTheDocument()
-      incomeTabTrigger.click();
-  
-      expect(incomeTabTrigger).toHaveAttribute("data-state", "active");
-      expect(expensesTabTrigger).toHaveAttribute("data-state", "inactive");
-      expect(screen.queryByText("-£20.25")).not.toBeInTheDocument();
-    }, 3000);    
+    await userEvent.click(incomeTabTrigger);
+
+    expect(incomeTabTrigger).toHaveAttribute("data-state", "active");
+    expect(expensesTabTrigger).toHaveAttribute("data-state", "inactive");
+    expect(screen.queryByText("-£20.25")).not.toBeInTheDocument();
 
   });
 });
@@ -85,7 +83,7 @@ describe("loading & error states", () => {
   test("should show an error state when the server returns an error 💥", async () => {
 
     server.use(
-      rest.get("/api/transactions", (req, res, ctx) => {
+      rest.get("http://localhost:5173/api/transactions", (req, res, ctx) => {
         return res(ctx.delay(), ctx.status(500), ctx.json([]))
       })
     );
